@@ -43,7 +43,7 @@ public abstract class Car implements Movable {
     }
     
 
-    // Getters
+    // Gettersli
 
     public double getX() {
         return x;
@@ -98,24 +98,22 @@ public abstract class Car implements Movable {
 
     
     public void move() {
-        double x = getX();
-        double y = getY();
 
         switch (direction) {
             case UP:
-                setY(y - currentSpeed);
+                y -= currentSpeed;
                 break;
 
             case RIGHT:
-                setX(x + currentSpeed);
+                x += currentSpeed;
                 break;
 
             case DOWN:
-                setY(y + currentSpeed);
+                y += currentSpeed;
                 break;
 
             case LEFT:
-                setX(x - currentSpeed);
+                x -= currentSpeed;
                 break;
         }
     }
