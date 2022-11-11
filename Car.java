@@ -12,38 +12,33 @@ public abstract class Car implements Movable {
     private String modelName; // The car model name
     private double x; // Car x-coordinate
     private double y; // Car y-coordinate
-    
     private Direction direction;
     private final List<Direction> directions;
 
-
-    public Car(int nrDoors, Color color, double enginePower, String modelName, double x, double y, Direction direction){
+    public Car(int nrDoors, Color color, double enginePower, String modelName, double x, double y,
+            Direction direction) {
         this.nrDoors = nrDoors;
         this.color = color;
         this.enginePower = enginePower;
         this.modelName = modelName;
         this.x = x;
         this.y = y;
-        stopEngine();
-
         this.directions = asList(Direction.UP, Direction.RIGHT, Direction.DOWN, Direction.LEFT);
         this.direction = direction;
-
+        stopEngine();
     }
-    
 
     // Setters
 
-    public void setX(double x) {
+    private void setX(double x) {
         this.x = x;
     }
 
-    public void setY(double y) {
+    private void setY(double y) {
         this.y = y;
     }
-    
 
-    // Gettersli
+    // Getters
 
     public double getX() {
         return x;
@@ -53,50 +48,56 @@ public abstract class Car implements Movable {
         return y;
     }
 
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public String getName() {
+        return modelName;
+    }
 
     // Car methods
 
-    protected int getNrDoors(){
+    public int getNrDoors() {
         return nrDoors;
     }
 
-    protected double getEnginePower(){
+    public double getEnginePower() {
         return enginePower;
     }
 
-    protected double getCurrentSpeed(){
+    public double getCurrentSpeed() {
         return currentSpeed;
     }
 
-    protected Color getColor(){
+    public Color getColor() {
         return color;
     }
 
-    protected void setColor(Color clr){
-	    color = clr;
+    protected void setColor(Color clr) {
+        color = clr;
     }
 
-    protected void startEngine(){
-	    currentSpeed = 0.1;
+    public void startEngine() {
+        currentSpeed = 0.1;
     }
 
-    protected void stopEngine(){
-	    currentSpeed = 0;
-    }
-    
-    // TODO fix this method according to lab pm
-
-    protected void gas(double amount){
-        incrementSpeed(amount);
+    public void stopEngine() {
+        currentSpeed = 0;
     }
 
-    // TODO fix this method according to lab pm
-
-    protected void brake(double amount){
-        decrementSpeed(amount);
+    public void gas(double amount) {
+        if (0 <= amount && amount <= 1) {
+            incrementSpeed(amount);
+        }
     }
 
-    
+    public void brake(double amount) {
+        if (0 <= amount && amount <= 1) {
+            decrementSpeed(amount);
+        }
+    }
+
     public void move() {
 
         switch (direction) {
@@ -117,7 +118,7 @@ public abstract class Car implements Movable {
                 break;
         }
     }
-    
+
     public void turnLeft() {
         direction = directions.get((directions.indexOf(direction) - 1 + directions.size()) % directions.size());
     }
@@ -126,11 +127,10 @@ public abstract class Car implements Movable {
         direction = directions.get((directions.indexOf(direction) + 1 + directions.size()) % directions.size());
     }
 
-
     protected abstract double speedFactor();
-    
+
     protected abstract void incrementSpeed(double amount);
 
     protected abstract void decrementSpeed(double amount);
-    
+
 }
