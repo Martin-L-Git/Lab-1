@@ -9,7 +9,5 @@ public class Main {
         volvo.stopEngine();
         System.out.println(volvo.getDirection());
         System.out.println(volvo.getY());
-
     }
-
 }
