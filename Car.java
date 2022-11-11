@@ -37,6 +37,10 @@ public abstract class Car implements Movable {
     private void setY(double y) {
         this.y = y;
     }
+    
+    protected void setColor(Color clr) {
+        color = clr;
+    }
 
     // Getters
 
@@ -56,8 +60,6 @@ public abstract class Car implements Movable {
         return modelName;
     }
 
-    // Car methods
-
     public int getNrDoors() {
         return nrDoors;
     }
@@ -74,9 +76,8 @@ public abstract class Car implements Movable {
         return color;
     }
 
-    protected void setColor(Color clr) {
-        color = clr;
-    }
+    // Start, top, speed and movement methods
+
 
     public void startEngine() {
         currentSpeed = 0.1;
