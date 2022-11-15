@@ -15,8 +15,7 @@ public abstract class Car implements Movable {
     private Direction direction;
     private final List<Direction> directions;
 
-    public Car(int nrDoors, Color color, double enginePower, String modelName, double x, double y,
-            Direction direction) {
+    public Car(int nrDoors, Color color, double enginePower, String modelName, double x, double y, Direction direction) {
         this.nrDoors = nrDoors;
         this.color = color;
         this.enginePower = enginePower;
