@@ -1,6 +1,7 @@
 package test;
 
 import src.*;
+import java.awt.*;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -150,7 +151,38 @@ public class carTest {
         assertEquals("Saab95", saab.getName());
     }
 
+    @Test
+    public void get_x_returns_x(){
+        Car car = new Volvo240();
+        car.turnRight(); // Turning car right so move() changes x-value
+        car.gas(1); // Setting currentSpeed to 1.25
+        car.move();
+        assertEquals(1.25, car.getX(), 0);
+    }
 
+    @Test
+    public void get_y_returns_y(){
+        Car car = new Volvo240(); // Default direction is UP, y-value is affected by gas
+        car.gas(1); // Setting currentSpeed to 1.25
+        car.move();
+        assertEquals(-1.25, car.getY(), 0);
+    }
+
+    @Test
+    public void get_enginePower_returns_enginePower(){
+        Saab95 saab = new Saab95();
+        Volvo240 volvo = new Volvo240();
+        assertEquals(125, saab.getEnginePower(), 0);
+        assertEquals(100, volvo.getEnginePower(), 0);
+    }
+
+    @Test
+    public void get_color_returns_color(){
+        Saab95 saab = new Saab95();
+        Volvo240 volvo = new Volvo240();
+        assertEquals(Color.red, saab.getColor());
+        assertEquals(Color.black, volvo.getColor());
+    }
 }
 
 
