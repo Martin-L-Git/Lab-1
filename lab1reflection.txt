@@ -1,0 +1,12 @@
+1. Explain how you chose the inheritance hierarchy in Task 1, making reference to the Open-Closed Principle.
+
+We started of with creating a superclass called "Car" that was inherited by both the Saab and the Volvo classes. Then we put all of the common
+functionality, attributes and methods into car. The ones that were exactly the same betweern both the Saab and the Volvo were deleted from the
+subclasses and put in "Car", whereas the ones that were similar but with some differences were added as abstract classes in Car and overrridden in the subclasses. 
+Thanks to this we don't have to reuse code. It also makes the code modular
+
+
+
+
+2. Explain how you implemented each of the sanity checks in Task 4.
+ARe you insane!!!

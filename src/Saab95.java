@@ -1,4 +1,4 @@
-package src.set;
+package src;
 import java.awt.*;
 
 public class Saab95 extends Car{
@@ -26,14 +26,5 @@ public class Saab95 extends Car{
         return getEnginePower() * 0.01 * turbo;
     }
 
-    @Override
-    public void incrementSpeed(double amount) {
-        currentSpeed = getCurrentSpeed() + speedFactor() * amount;
-    }
-
-    @Override
-    public void decrementSpeed(double amount) {
-        currentSpeed = getCurrentSpeed() - speedFactor() * amount;
-    }
 
 }

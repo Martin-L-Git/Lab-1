@@ -1,4 +1,5 @@
-package src.set;
+package src;
+
 import java.awt.*;
 
 import java.util.List;
@@ -16,7 +17,8 @@ public abstract class Car implements Movable {
     private Direction direction;
     private final List<Direction> directions;
 
-    public Car(int nrDoors, Color color, double enginePower, String modelName, double x, double y, Direction direction) {
+    public Car(int nrDoors, Color color, double enginePower, String modelName, double x, double y,
+            Direction direction) {
         this.nrDoors = nrDoors;
         this.color = color;
         this.enginePower = enginePower;
@@ -37,7 +39,7 @@ public abstract class Car implements Movable {
     private void setY(double y) {
         this.y = y;
     }
-    
+
     protected void setColor(Color clr) {
         color = clr;
     }
@@ -77,7 +79,6 @@ public abstract class Car implements Movable {
     }
 
     // Start, top, speed and movement methods
-
 
     public void startEngine() {
         currentSpeed = 0.1;
@@ -130,8 +131,12 @@ public abstract class Car implements Movable {
 
     protected abstract double speedFactor();
 
-    protected abstract void incrementSpeed(double amount);
+    private void incrementSpeed(double amount) {
+        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower());
+    }
 
-    protected abstract void decrementSpeed(double amount);
+    private void decrementSpeed(double amount) {
+        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
+    }
 
 }
