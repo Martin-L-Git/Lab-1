@@ -1,12 +1,37 @@
 1. Explain how you chose the inheritance hierarchy in Task 1, making reference to the Open-Closed Principle.
 
-We started of with creating a superclass called "Car" that was inherited by both the Saab and the Volvo classes. Then we put all of the common
-functionality, attributes and methods into car. The ones that were exactly the same betweern both the Saab and the Volvo were deleted from the
-subclasses and put in "Car", whereas the ones that were similar but with some differences were added as abstract classes in Car and overrridden in the subclasses. 
-Thanks to this we don't have to reuse code. It also makes the code modular
+We started off by creating a superclass called "Car" that was inherited by both the Saab and the Volvo classes. Then we put all of the common
+code, both attributes and methods, into Car. This left only 1-3 methods and/or attributes in the Volvo and Saab classes respectively, making it look much cleaner and
+reduced the amount of redundant code dramatically. There was only one method, speedFactor, that had the same functionality but with some slight differences between 
+the car brands that we had to leave in both, as it we cannot have it run the exact same method for all subclasses of Car. We did however make it an abstract class 
+for it in Car but with no code or return value, because it is a vital method that has to be implemented by our cars, and all cars we might create in the future. 
+Lastly, we made all attributes in Car private, so that they cannot be changed from outside the class, and we also made many methods private as they belong to the 
+implementation and/or are called withtin other methods and are not meant to be called directly. For example, the gas()-method is public, as we need to call it for a 
+Car to move, but it uses the private method incementSpeed(). Also, we made all "getter"-methods public so that we can access the values of our private attributes without
+making them public, but left the "setter"-methods private as they should only be used within the Car class.
 
+These changes are necessary if we want to follow the Open-Closed Principle (OCP) because of the following reasons:
 
+1. We can create new classes for other cars that can inherit the Car class and work right away, but we don't have to change anything else in the program. 
+In this way, the program is extendable. We can make as many cars as we want with varying attributes and maybe some unique methods, and they can all be used as
+cars immediately as they get the important functionality from their superclass, but we don't have to change any of our existing code. 
+
+2. The program is closed for modification because all out attributes are private and cannot be changed easily, but are still reachable thanks to our "getter"-methods.
+Also, by making certain methods private and others public, we have better control of what can and cannot be done to an object of type Car. For example, we can update 
+our x and y-values by using the public gas() or brake(), but cannot set the values to anything we want from outside the class. We can in this way dictate what the
+user can and cannot do, making them run the program as we intended it to work.
 
 
 2. Explain how you implemented each of the sanity checks in Task 4.
-Are you insane!!!
+
+The first sanity check, making gas() and brake() only accept values between 0 and 1, we implemented with a basic if-statement. If the caller tries to use a value
+outside the range, the method simply will not do anything, as it makes the condition of the if-statement false.
+
+To solve second task, making currentSpeed never be negative or exceed the value of enginePower, we made use of the Math.max and Math.min functionality.
+The currentSpeed is determined by the incrementSpeed and decrementSpeed-methods. When we incrementSpeed(), Math.min makes sure to always read the lower of 
+(currentSpeed + speedFactor * gas(amount)) and enginePower. Therefore the speed cannot exceed our enginePower. In the decrementSpeed, we used Math.min to always
+read the maximum value of (currentSpeed - speedFactor * gas(amount)) and 0, so that we never get a negative speed, only 0 as lowest.
+
+The final two tasks were also solved when making the gas() and brake() only accept values between 0 and 1. If we gas() we always add(+) speedFactor * gas(amount) to the 
+currentSpeed. Since both the amount and speedFactor always are postive, the speed can never decrease from using gas(). The same thing, but the other way around, applies
+to the brake()-method. The amount is always a postive number between 0 and 1 and since we subract(-) from the currentSpeed, there can never be an increase in speed.
