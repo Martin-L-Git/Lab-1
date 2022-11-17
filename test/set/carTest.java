@@ -1,18 +1,18 @@
-package src;
+package src.set;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class carTest(){
+public class carTest {
 
     @Test
-    public static void testing_default_direction(){
+    public void testing_default_direction(){
         Car volvo = new Volvo240();
         assertEquals(UP, System.out.println(volvo.direction))
     }
 
     @Test
-    public static void testing_direction_after_turning_left(){
+    public void testing_direction_after_turning_left(){
         Car volvo = new Volvo240();
         volvo.turnLeft();
         assertEquals(LEFT, System.out.println(volvo.direction))
@@ -26,7 +26,7 @@ public class carTest(){
         
     
     @Test
-    public static void testing_direction_after_turning_right(){
+    public void testing_direction_after_turning_right(){
         Car volvo = new Volvo240();
         volvo.turnRight();
         assertEquals(RIGHT, System.out.println(volvo.direction))

@@ -1,4 +1,4 @@
-package src;
+package src.set;
 
 enum Direction {
     RIGHT, LEFT, DOWN, UP

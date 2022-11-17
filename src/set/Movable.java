@@ -1,4 +1,4 @@
-package src;
+package src.set;
 
 interface Movable {
 
