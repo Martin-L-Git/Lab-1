@@ -1,7 +1,7 @@
 package src;
 
 import java.awt.*;
-
+import java.nio.file.DirectoryIteratorException;
 import java.util.List;
 import static java.util.Arrays.asList;
 

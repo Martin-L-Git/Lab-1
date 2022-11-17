@@ -9,4 +9,4 @@ Thanks to this we don't have to reuse code. It also makes the code modular
 
 
 2. Explain how you implemented each of the sanity checks in Task 4.
-ARe you insane!!!
+Are you insane!!!

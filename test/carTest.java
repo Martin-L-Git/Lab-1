@@ -9,13 +9,13 @@ import static org.junit.Assert.assertTrue;
 public class carTest {
 
     @Test
-    public void testing_default_direction() {
+    public void default_direction() {
         Car volvo = new Volvo240();
         assertEquals(Direction.UP, volvo.getDirection());
     }
 
     @Test
-    public void testing_direction_after_turning_left() {
+    public void direction_after_turning_left() {
         Car volvo = new Volvo240();
         volvo.turnLeft();
         assertEquals(Direction.LEFT, volvo.getDirection());
@@ -28,7 +28,7 @@ public class carTest {
     }
 
     @Test
-    public void testing_direction_after_turning_right() {
+    public void direction_after_turning_right() {
         Car volvo = new Volvo240();
         volvo.turnRight();
         assertEquals(Direction.RIGHT, volvo.getDirection());
@@ -41,7 +41,7 @@ public class carTest {
     }
 
     @Test
-    public void testing_startEngine() {
+    public void startEngine_changes_currentSpeed() {
         Car car = new Volvo240();
         car.startEngine();
         assertEquals(0.1, car.getCurrentSpeed(), 0);
@@ -49,7 +49,7 @@ public class carTest {
     }
 
     @Test
-    public void testing_stopEngine() {
+    public void stopEngine_sets_currentSpeed_to_zero() {
         Car car = new Saab95();
         car.startEngine();
         car.stopEngine();
@@ -57,14 +57,14 @@ public class carTest {
     }
 
     @Test
-    public void testing_gas_for_volvo() {
+    public void gas_for_volvo() {
         Volvo240 volvo = new Volvo240();
         volvo.gas(1);
         assertEquals(1.25, volvo.getCurrentSpeed(), 0);
     }
 
     @Test
-    public void testing_gas_for_saab() {
+    public void gas_for_saab() {
         Saab95 saab = new Saab95();
         saab.gas(1);
         assertEquals(1.25, saab.getCurrentSpeed(), 0);
@@ -74,7 +74,31 @@ public class carTest {
     }
 
     @Test
-    public void testing_brake_for_volvo() {
+    public void gas_only_takes_argument_between_0_and_1() {
+        Car car = new Volvo240();
+        car.gas(1); // currentSpeed now 1.25
+        assertEquals(1.25, car.getCurrentSpeed(), 0);
+        car.gas(100);
+        assertEquals(1.25, car.getCurrentSpeed(), 0); // currentSpeed unchanged
+        car.gas(-100);
+        assertEquals(1.25, car.getCurrentSpeed(), 0); // currentSpeed unchanged
+
+    }
+
+    @Test
+    public void brake_only_takes_argument_between_0_and_1() {
+        Car car = new Volvo240();
+        car.gas(1); // currentSpeed now 1.25
+        car.brake(1);
+        assertEquals(0, car.getCurrentSpeed(), 0);
+        car.brake(100);
+        assertEquals(0, car.getCurrentSpeed(), 0); // currentSpeed still zero
+        car.brake(-100);
+        assertEquals(0, car.getCurrentSpeed(), 0); // currentSpeed still zero
+    }
+
+    @Test
+    public void brake_for_volvo() {
         Volvo240 volvo = new Volvo240();
         volvo.gas(1); // Speed is now 1,25, see gas method
         volvo.brake(1);
@@ -82,7 +106,7 @@ public class carTest {
     }
 
     @Test
-    public void testing_brake_for_saab() {
+    public void brake_for_saab() {
         Saab95 saab = new Saab95();
         saab.gas(1); // Speed is now 1,25, see gas method
         saab.brake(1);
@@ -90,7 +114,7 @@ public class carTest {
     }
 
     @Test
-    public void testing_move() {
+    public void move_changes_x_or_y_value() {
         Car car = new Volvo240(); // Default direction == UP
         car.gas(1); // Setting currentSpeed to 1.25
         car.move();
@@ -109,4 +133,24 @@ public class carTest {
         assertEquals(0, car.getX(), 0);
     }
 
+
+    @Test
+    public void get_nr_of_doors(){
+        Car saab = new Saab95();
+        Car volvo = new Volvo240();
+        assertEquals(4, volvo.getNrDoors());
+        assertEquals(2, saab.getNrDoors());
+    }
+
+    @Test
+    public void get_model_name(){
+        Car saab = new Saab95();
+        Car volvo = new Volvo240();
+        assertEquals("Volvo240", volvo.getName());
+        assertEquals("Saab95", saab.getName());
+    }
+
+
 }
+
+
