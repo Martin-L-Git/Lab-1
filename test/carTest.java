@@ -5,7 +5,6 @@ import java.awt.*;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class carTest {
 
@@ -46,7 +45,6 @@ public class carTest {
         Car car = new Volvo240();
         car.startEngine();
         assertEquals(0.1, car.getCurrentSpeed(), 0);
-
     }
 
     @Test
