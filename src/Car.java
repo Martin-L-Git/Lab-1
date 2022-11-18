@@ -77,7 +77,7 @@ public abstract class Car implements Movable {
         return color;
     }
 
-    // Start, top, speed and movement methods
+    // Public, callable Car methods
 
     public void startEngine() {
         currentSpeed = 0.1;
@@ -127,6 +127,8 @@ public abstract class Car implements Movable {
     public void turnRight() {
         direction = directions.get((directions.indexOf(direction) + 1 + directions.size()) % directions.size());
     }
+
+    // Car private & protected implementation methods
 
     protected abstract double speedFactor();
 
