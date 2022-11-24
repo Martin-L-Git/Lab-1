@@ -1,7 +1,6 @@
 package src;
 import java.awt.*;
 import java.util.ArrayList;
-import java.math.*;
 
 
 public class CarTransport extends Car{
@@ -11,11 +10,15 @@ public class CarTransport extends Car{
     private double reasonableDistance = 2;
     
     public CarTransport(){
-        super(2, Color.yellow, 300, "TransportimusMaximus");
+        super(2, Color.yellow, 300, "GamlaBettan");
         this.platform = new Flatbed();
         this.loadedCars = new ArrayList<Car>(6);
     }
-    
+
+    public ArrayList<Car> getLoadedCars() {
+        return loadedCars;
+    }
+
     public void lowerPlatform(){
         if (currentSpeed == 0) {
             platform.lowerPlatform();
@@ -26,16 +29,26 @@ public class CarTransport extends Car{
         platform.raisePlatform();
     }
 
-    public void loadCar(Car otherCar){
-        if (Math.sqrt(Math.pow((this.getX() - otherCar.getX()), 2) + (Math.pow((this.getY() - otherCar.getY()), 2))) <= reasonableDistance 
-            && platform.isUp() == false){
-            loadedCars.add(otherCar);
+    public void loadCar(Car other){
+        double x1 = getPosition().getX();
+        double x2 = other.getPosition().getX();
+        double y1 = getPosition().getY();
+        double y2 = other.getPosition().getY();
+        if (getPosition().calculateDistance(x1, x2, y1, y2) <= reasonableDistance && platform.isUp() == false){
+            loadedCars.add(other);
+
+            // Need to delete the car once loaded.
+
         }      
     }
 
-    public void unloadCar(Car otherCar){
+    public void unloadCar(Car car){
+        double x = getPosition().getX();
+        double y = getPosition().getY();
         if (platform.isUp() == false){
-            loadedCars.remove(otherCar); 
+            loadedCars.remove(car); 
+
+            // Need to spawn the car once unloaded.
         }
     }
 

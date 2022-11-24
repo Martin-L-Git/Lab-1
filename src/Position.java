@@ -3,17 +3,12 @@ import java.util.*;
 
 import static java.util.Arrays.asList;
 
-
 public class Position {
 
     private double x;
     private double y;
     private Direction direction;
     private final List<Direction> directions;
-
-    public enum Direction {
-        RIGHT, LEFT, DOWN, UP
-    }
 
     public Position(double x, double y){
         this.x = x;
@@ -28,6 +23,10 @@ public class Position {
 
     public void setY (double y) {
         this.y = y;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
     
     public double getX() {
@@ -62,5 +61,17 @@ public class Position {
         y -= amount;
     }
 
+    public void incrementDirection(){
+        direction = directions.get((directions.indexOf(direction) + 1 + directions.size()) % directions.size());
+    }
+
+    public void decrementDirection(){
+        direction = directions.get((directions.indexOf(direction) - 1 + directions.size()) % directions.size());
+    }
     
+    public double calculateDistance(double x1, double x2, double y1, double y2){
+        double distance = Math.sqrt(Math.pow((x1 - x2), 2) + (Math.pow((y1 - y2), 2)));
+        return distance;
+    }
+
 }

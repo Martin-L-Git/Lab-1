@@ -11,33 +11,33 @@ public class carTest {
     @Test
     public void default_direction() {
         Car volvo = new Volvo240();
-        assertEquals(Direction.UP, volvo.getDirection());
+        assertEquals(Direction.UP, volvo.getPosition().getDirection());
     }
 
     @Test
     public void direction_after_turning_left() {
         Car volvo = new Volvo240();
         volvo.turnLeft();
-        assertEquals(Direction.LEFT, volvo.getDirection());
+        assertEquals(Direction.LEFT, volvo.getPosition().getDirection());
         volvo.turnLeft();
-        assertEquals(Direction.DOWN, volvo.getDirection());
+        assertEquals(Direction.DOWN, volvo.getPosition().getDirection());                      // Is this really the way to do this?
         volvo.turnLeft();
-        assertEquals(Direction.RIGHT, volvo.getDirection());
+        assertEquals(Direction.RIGHT, volvo.getPosition().getDirection());
         volvo.turnLeft();
-        assertEquals(Direction.UP, volvo.getDirection());
+        assertEquals(Direction.UP, volvo.getPosition().getDirection());
     }
 
     @Test
     public void direction_after_turning_right() {
         Car volvo = new Volvo240();
         volvo.turnRight();
-        assertEquals(Direction.RIGHT, volvo.getDirection());
+        assertEquals(Direction.RIGHT, volvo.getPosition().getDirection());
         volvo.turnRight();
-        assertEquals(Direction.DOWN, volvo.getDirection());
+        assertEquals(Direction.DOWN, volvo.getPosition().getDirection());
         volvo.turnRight();
-        assertEquals(Direction.LEFT, volvo.getDirection());
+        assertEquals(Direction.LEFT, volvo.getPosition().getDirection());
         volvo.turnRight();
-        assertEquals(Direction.UP, volvo.getDirection());
+        assertEquals(Direction.UP, volvo.getPosition().getDirection());
     }
 
     @Test
@@ -117,19 +117,19 @@ public class carTest {
         Car car = new Volvo240(); // Default direction == UP
         car.gas(1); // Setting currentSpeed to 1.25
         car.move();
-        assertEquals(-1.25, car.getY(), 0);
+        assertEquals(-1.25, car.getPosition().getY(), 0);
 
         car.turnRight(); // Direction == RIGHT
         car.move();
-        assertEquals(1.25, car.getX(), 0);
+        assertEquals(1.25, car.getPosition().getX(), 0);
 
         car.turnRight(); // Direction == DOWN
         car.move();
-        assertEquals(0, car.getY(), 0);
+        assertEquals(0, car.getPosition().getY(), 0);
 
         car.turnRight(); // Direction == LEFT
         car.move();
-        assertEquals(0, car.getX(), 0);
+        assertEquals(0, car.getPosition().getX(), 0);
     }
 
 
@@ -145,8 +145,8 @@ public class carTest {
     public void get_model_name(){
         Car saab = new Saab95();
         Car volvo = new Volvo240();
-        assertEquals("Volvo240", volvo.getName());
-        assertEquals("Saab95", saab.getName());
+        assertEquals("Volvo240", volvo.getmodelName());
+        assertEquals("Saab95", saab.getmodelName());
     }
 
     @Test
@@ -155,7 +155,7 @@ public class carTest {
         car.turnRight(); // Turning car right so move() changes x-value
         car.gas(1); // Setting currentSpeed to 1.25
         car.move();
-        assertEquals(1.25, car.getX(), 0);
+        assertEquals(1.25, car.getPosition().getX(), 0);
     }
 
     @Test
@@ -163,7 +163,7 @@ public class carTest {
         Car car = new Volvo240(); // Default direction is UP, y-value is affected by gas
         car.gas(1); // Setting currentSpeed to 1.25
         car.move();
-        assertEquals(-1.25, car.getY(), 0);
+        assertEquals(-1.25, car.getPosition().getY(), 0);
     }
 
     @Test
@@ -180,6 +180,25 @@ public class carTest {
         Volvo240 volvo = new Volvo240();
         assertEquals(Color.red, saab.getColor());
         assertEquals(Color.black, volvo.getColor());
+    }
+
+    @Test 
+    public void loading_car_in_carTransport_works(){
+        CarTransport ct = new CarTransport();
+        Saab95 saab = new Saab95();
+        saab.getPosition().setX(8.2);
+        ct.getPosition().setX(10);
+        assertEquals(0, ct.getLoadedCars().size());
+        ct.lowerPlatform();
+        ct.loadCar(saab);
+        assertEquals(1, ct.getLoadedCars().size());
+
+
+
+
+
+
+
     }
 }
 

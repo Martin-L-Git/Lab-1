@@ -1,8 +1,5 @@
 package src;
-
 import java.awt.*;
-import java.util.List;
-import static java.util.Arrays.asList;
 
 public abstract class Car implements Movable {
 
@@ -30,7 +27,7 @@ public abstract class Car implements Movable {
 
     // Getters
 
-    public String getName() {
+    public String getmodelName() {
         return modelName;
     }
 
@@ -50,12 +47,12 @@ public abstract class Car implements Movable {
         return color;
     }
 
-    public Direction getDirection() {
-        return direction;
+    public Position getPosition() {
+        return position;
     }
 
-    // Public, callable Car methods
 
+    // Public, callable Car methods
 
     public void startEngine() {
         currentSpeed = 0.1;
@@ -78,32 +75,31 @@ public abstract class Car implements Movable {
     }
 
     public void move() {
-
-        switch (direction) {
+        switch (position.getDirection()) {
             case UP:
-                y -= currentSpeed;
+                position.decreaseY(currentSpeed);
                 break;
 
             case RIGHT:
-                x += currentSpeed;
+                position.increaseX(currentSpeed);
                 break;
 
             case DOWN:
-                y += currentSpeed;
+                position.increaseY(currentSpeed);
                 break;
 
             case LEFT:
-                x -= currentSpeed;
+                position.decreaseX(currentSpeed);
                 break;
         }
     }
 
     public void turnLeft() {
-        direction = directions.get((directions.indexOf(direction) - 1 + directions.size()) % directions.size());
+        position.decrementDirection();
     }
 
     public void turnRight() {
-        direction = directions.get((directions.indexOf(direction) + 1 + directions.size()) % directions.size());
+        position.incrementDirection();
     }
 
     // Car private & protected implementation methods
