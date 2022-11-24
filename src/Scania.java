@@ -6,7 +6,7 @@ public class Scania extends Car {
     private Ramp platform;
 
     public Scania(Ramp platform) {
-        super(2, Color.green, 200, "Sopis2000", 0, 0, Direction.UP);
+        super(2, Color.green, 200, "Sopis2000");
         this.platform = new Ramp(70, 10);
     }
 

@@ -11,7 +11,7 @@ public class CarTransport extends Car{
     private double reasonableDistance = 2;
     
     public CarTransport(){
-        super(2, Color.yellow, 300, "TransportimusMaximus", 0, 0, Direction.UP);
+        super(2, Color.yellow, 300, "TransportimusMaximus");
         this.platform = new Flatbed();
         this.loadedCars = new ArrayList<Car>(6);
     }

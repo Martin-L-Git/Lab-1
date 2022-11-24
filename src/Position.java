@@ -1,6 +1,8 @@
 package src;
-import java.util.List;
+import java.util.*;
+
 import static java.util.Arrays.asList;
+
 
 public class Position {
 
@@ -9,6 +11,9 @@ public class Position {
     private Direction direction;
     private final List<Direction> directions;
 
+    public enum Direction {
+        RIGHT, LEFT, DOWN, UP
+    }
 
     public Position(double x, double y){
         this.x = x;
@@ -24,7 +29,6 @@ public class Position {
     public void setY (double y) {
         this.y = y;
     }
-
     
     public double getX() {
         return x;
@@ -38,5 +42,25 @@ public class Position {
         return direction;
     }
 
+    public List<Direction> getDirections() {
+        return directions;
+    }
 
+    public void increaseX(double amount){
+        x += amount;
+    }
+
+    public void increaseY(double amount){
+        y += amount;
+    }
+
+    public void decreaseX(double amount){
+        x -= amount;
+    }
+
+    public void decreaseY(double amount){
+        y -= amount;
+    }
+
+    
 }

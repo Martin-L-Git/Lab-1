@@ -11,20 +11,14 @@ public abstract class Car implements Movable {
     protected double currentSpeed = 0; // The current speed of the car
     private Color color; // Color of the car
     private String modelName; // The car model name
-    private double x; // Car x-coordinate
-    private double y; // Car y-coordinate
-    private Direction direction;
-    private final List<Direction> directions;
+    private Position position;
 
-    public Car(int nrDoors, Color color, double enginePower, String modelName, double x, double y, Direction direction) {
+    public Car(int nrDoors, Color color, double enginePower, String modelName) {
         this.nrDoors = nrDoors;
         this.color = color;
         this.enginePower = enginePower;
         this.modelName = modelName;
-        this.x = x;
-        this.y = y;
-        this.directions = asList(Direction.UP, Direction.RIGHT, Direction.DOWN, Direction.LEFT);
-        this.direction = direction;
+        this.position = new Position(0, 0);
         stopEngine();
     }
 
@@ -32,14 +26,6 @@ public abstract class Car implements Movable {
 
     protected void setColor(Color clr) {
         color = clr;
-    }
-
-    public void setX (double x) {
-        this.x = x;
-    }
-
-    public void setY (double y) {
-        this.y = y;
     }
 
     // Getters
@@ -62,14 +48,6 @@ public abstract class Car implements Movable {
 
     public Color getColor() {
         return color;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
     }
 
     public Direction getDirection() {
