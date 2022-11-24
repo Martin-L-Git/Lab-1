@@ -34,6 +34,14 @@ public abstract class Car implements Movable {
         color = clr;
     }
 
+    private void setX (double x) {
+        this.x = x;
+    }
+
+    private void setY (double y) {
+        this.y = y;
+    }
+
     // Getters
 
     public String getName() {
@@ -56,7 +64,16 @@ public abstract class Car implements Movable {
         return color;
     }
 
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
     // Public, callable Car methods
+
 
     public void startEngine() {
         currentSpeed = 0.1;
