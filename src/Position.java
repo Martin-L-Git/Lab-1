@@ -1,5 +1,4 @@
 package src;
-import java.awt.*;
 import java.util.List;
 import static java.util.Arrays.asList;
 
@@ -18,11 +17,11 @@ public class Position {
         this.directions = asList(Direction.UP, Direction.RIGHT, Direction.DOWN, Direction.LEFT);
     }
 
-    private void setX (double x) {
+    public void setX (double x) {
         this.x = x;
     }
 
-    private void setY (double y) {
+    public void setY (double y) {
         this.y = y;
     }
 
@@ -39,32 +38,5 @@ public class Position {
         return direction;
     }
 
-    public void move(double currentSpeed) {
-        switch (direction) {
-            case UP:
-                y -= currentSpeed;
-                break;
-
-            case RIGHT:
-                x += currentSpeed;
-                break;
-
-            case DOWN:
-                y += currentSpeed;
-                break;
-
-            case LEFT:
-                x -= currentSpeed;
-                break;
-        }
-    }
-
-    public void turnLeft() {
-        direction = directions.get((directions.indexOf(direction) - 1 + directions.size()) % directions.size());
-    }
-
-    public void turnRight() {
-        direction = directions.get((directions.indexOf(direction) + 1 + directions.size()) % directions.size());
-    }
 
 }

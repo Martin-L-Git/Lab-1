@@ -34,11 +34,11 @@ public abstract class Car implements Movable {
         color = clr;
     }
 
-    private void setX (double x) {
+    public void setX (double x) {
         this.x = x;
     }
 
-    private void setY (double y) {
+    public void setY (double y) {
         this.y = y;
     }
 
@@ -70,6 +70,10 @@ public abstract class Car implements Movable {
 
     public double getY() {
         return y;
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 
     // Public, callable Car methods

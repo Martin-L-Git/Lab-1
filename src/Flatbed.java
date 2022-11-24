@@ -2,7 +2,7 @@ package src;
 
 public class Flatbed implements iPlatform{
 
-    private boolean isUp = true;
+    private boolean isUp;;
     
     public Flatbed(){
         this.isUp = true;

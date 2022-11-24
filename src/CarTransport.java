@@ -1,13 +1,14 @@
 package src;
 import java.awt.*;
 import java.util.ArrayList;
-import java.lang.Math.*;
+import java.math.*;
 
 
 public class CarTransport extends Car{
     
     private Flatbed platform;
     private ArrayList<Car> loadedCars;
+    private double reasonableDistance = 2;
     
     public CarTransport(){
         super(2, Color.yellow, 300, "TransportimusMaximus", 0, 0, Direction.UP);
@@ -25,10 +26,8 @@ public class CarTransport extends Car{
         platform.raisePlatform();
     }
 
-
-    // #2 == close enough to load
     public void loadCar(Car otherCar){
-        if (Math.sqrt(Math.pow((this.getX() - otherCar.getX()), 2) + (Math.pow((this.getY() - otherCar.getY()), 2))) <= 2 
+        if (Math.sqrt(Math.pow((this.getX() - otherCar.getX()), 2) + (Math.pow((this.getY() - otherCar.getY()), 2))) <= reasonableDistance 
             && platform.isUp() == false){
             loadedCars.add(otherCar);
         }      
@@ -36,7 +35,7 @@ public class CarTransport extends Car{
 
     public void unloadCar(Car otherCar){
         if (platform.isUp() == false){
-            loadedCars.remove(otherCar); // megaproblem for Max
+            loadedCars.remove(otherCar); 
         }
     }
 

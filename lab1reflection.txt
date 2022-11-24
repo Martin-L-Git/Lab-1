@@ -7,8 +7,8 @@ the car brands that we had to leave in both, as it we cannot have it run the exa
 for it in Car but with no code or return value, because it is a vital method that has to be implemented by our cars, and all cars we might create in the future. 
 Lastly, we made all attributes in Car private, so that they cannot be changed from outside the class, and we also made many methods private as they belong to the 
 implementation and/or are called withtin other methods and are not meant to be called directly. For example, the gas()-method is public, as we need to call it for a 
-Car to move, but it uses the private method incementSpeed(). Also, we made all "getter"-methods public so that we can access the values of our private attributes without
-making them public, but left the "setter"-methods private as they should only be used within the Car class.
+Car to move, but it uses the private method incementSpeed(). Also, we made all "getter" and "setter" methods public so that we can access the values of our private
+attributes without making them public.
 
 These changes are necessary if we want to follow the Open-Closed Principle (OCP) because of the following reasons:
 
@@ -18,7 +18,7 @@ cars immediately as they get the important functionality from their superclass, 
 
 2. The program is closed for modification because all out attributes are private and cannot be changed easily, but are still reachable thanks to our "getter"-methods.
 Also, by making certain methods private and others public, we have better control of what can and cannot be done to an object of type Car. For example, we can update 
-our x and y-values by using the public gas() or brake(), but cannot set the values to anything we want from outside the class. We can in this way dictate what the
+our x and y-values by using the public gas() or brake(), but cannot incrementSpeed() or decrementSpeed() from outside the class. We can in this way dictate what the
 user can and cannot do, making them run the program as we intended it to work.
 
 
