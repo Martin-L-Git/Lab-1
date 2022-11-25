@@ -1,21 +1,21 @@
 package src;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 
 
 public class CarTransport extends Car{
     
     private Flatbed platform;
-    private ArrayList<Car> loadedCars;
+    private Stack<Car> loadedCars;
     private double reasonableDistance = 2;
     
     public CarTransport(){
         super(2, Color.yellow, 300, "GamlaBettan");
         this.platform = new Flatbed();
-        this.loadedCars = new ArrayList<Car>(6);
+        this.loadedCars = new Stack<Car>();
     }
 
-    public ArrayList<Car> getLoadedCars() {
+    public Stack<Car> getLoadedCars() {
         return loadedCars;
     }
 
@@ -35,19 +35,19 @@ public class CarTransport extends Car{
         double y1 = getPosition().getY();
         double y2 = other.getPosition().getY();
         if (getPosition().calculateDistance(x1, x2, y1, y2) <= reasonableDistance && platform.isUp() == false){
-            loadedCars.add(other);
+            loadedCars.push(other);
 
             // Need to delete the car once loaded.
 
         }      
     }
 
-    public void unloadCar(Car car){
+    public void unloadCar(){
         double x = getPosition().getX();
         double y = getPosition().getY();
         if (platform.isUp() == false){
-            loadedCars.remove(car); 
-
+            loadedCars.pop();
+          
             // Need to spawn the car once unloaded.
         }
     }
