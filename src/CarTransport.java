@@ -3,19 +3,20 @@ import java.awt.*;
 import java.util.*;
 
 
-public class CarTransport extends Car{
+public class CarTransport extends Car implements iCanStoreCars{
     
     private Flatbed platform;
-    private Stack<Car> loadedCars;
+    private ArrayList<Car> loadedCars;
     private double reasonableDistance = 2;
+    private int maxCapacity = 6;
     
     public CarTransport(){
         super(2, Color.yellow, 300, "GamlaBettan");
         this.platform = new Flatbed();
-        this.loadedCars = new Stack<Car>();
+        this.loadedCars = new ArrayList<Car>();
     }
 
-    public Stack<Car> getLoadedCars() {
+    public ArrayList<Car> getLoadedCars() {
         return loadedCars;
     }
 
@@ -29,27 +30,26 @@ public class CarTransport extends Car{
         platform.raisePlatform();
     }
 
-    public void loadCar(Car other){
+    public void loadCar(Car car){
         double x1 = getPosition().getX();
-        double x2 = other.getPosition().getX();
+        double x2 = car.getPosition().getX();
         double y1 = getPosition().getY();
-        double y2 = other.getPosition().getY();
-        if (getPosition().calculateDistance(x1, x2, y1, y2) <= reasonableDistance && platform.isUp() == false){
-            loadedCars.push(other);
-
-            // Need to delete the car once loaded.
-
+        double y2 = car.getPosition().getY();
+        if (getPosition().calculateDistance(x1, x2, y1, y2) <= reasonableDistance && platform.isUp() == false && loadedCars.size() < maxCapacity){
+            loadedCars.add(car);
         }      
     }
 
-    public void unloadCar(){
+    public void unloadCar(Car car){
         double x = getPosition().getX();
         double y = getPosition().getY();
         if (platform.isUp() == false){
-            loadedCars.pop();
-          
-            // Need to spawn the car once unloaded.
+            loadedCars.remove(car);
         }
+    }
+
+    public Flatbed getPlatform() {
+        return platform;
     }
 
     @Override

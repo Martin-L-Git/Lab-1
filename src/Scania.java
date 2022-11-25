@@ -28,6 +28,10 @@ public class Scania extends Car {
         else {return 0.0;}
     }
 
+    public Ramp getPlatform() {
+        return platform;
+    }
+
 }
 
 

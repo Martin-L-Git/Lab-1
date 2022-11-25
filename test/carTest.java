@@ -192,14 +192,23 @@ public class carTest {
         ct.lowerPlatform();
         ct.loadCar(saab);
         assertEquals(1, ct.getLoadedCars().size());
+    }
+
+    @Test
+    public void cannot_raise_ramp_while_Scania_is_moving(){
+        Scania scania = new Scania();
+        scania.startEngine();
+        scania.raisePlatform();
+        assertEquals(0, scania.getPlatform().getCurrentAngle());
+    }
 
 
-
-
-
-
-
+/*
+    @Test
+    public void cannot_unload_car_while_platform_isUp(){
+        CarTransport carTransport = new CarTransport();
+        carTransport.
     }
 }
 
-
+*/
