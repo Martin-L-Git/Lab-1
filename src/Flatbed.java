@@ -1,23 +1,26 @@
 package src;
 
-public class Flatbed implements iPlatform{
+public class Flatbed implements iPlatform {
 
     private boolean isUp;;
-    
-    public Flatbed(){
+
+    public Flatbed() {
         this.isUp = true;
     }
 
-    public void raisePlatform(){
+    public void raisePlatform() {
         isUp = true;
     }
-    
-    public void lowerPlatform(){
+
+    public void lowerPlatform() {
         isUp = false;
     }
 
     public boolean isUp() {
         return isUp;
     }
-    
+
+    public boolean isDown() {
+        return !isUp;
+    }
 }

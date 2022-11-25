@@ -20,7 +20,7 @@ public class carTest {
         volvo.turnLeft();
         assertEquals(Direction.LEFT, volvo.getPosition().getDirection());
         volvo.turnLeft();
-        assertEquals(Direction.DOWN, volvo.getPosition().getDirection());                      // Is this really the way to do this?
+        assertEquals(Direction.DOWN, volvo.getPosition().getDirection()); // Is this really the way to do this?
         volvo.turnLeft();
         assertEquals(Direction.RIGHT, volvo.getPosition().getDirection());
         volvo.turnLeft();
@@ -132,9 +132,8 @@ public class carTest {
         assertEquals(0, car.getPosition().getX(), 0);
     }
 
-
     @Test
-    public void get_nr_of_doors(){
+    public void get_nr_of_doors() {
         Car saab = new Saab95();
         Car volvo = new Volvo240();
         assertEquals(4, volvo.getNrDoors());
@@ -142,7 +141,7 @@ public class carTest {
     }
 
     @Test
-    public void get_model_name(){
+    public void get_model_name() {
         Car saab = new Saab95();
         Car volvo = new Volvo240();
         assertEquals("Volvo240", volvo.getmodelName());
@@ -150,7 +149,7 @@ public class carTest {
     }
 
     @Test
-    public void get_x_returns_x(){
+    public void get_x_returns_x() {
         Car car = new Volvo240();
         car.turnRight(); // Turning car right so move() changes x-value
         car.gas(1); // Setting currentSpeed to 1.25
@@ -159,7 +158,7 @@ public class carTest {
     }
 
     @Test
-    public void get_y_returns_y(){
+    public void get_y_returns_y() {
         Car car = new Volvo240(); // Default direction is UP, y-value is affected by gas
         car.gas(1); // Setting currentSpeed to 1.25
         car.move();
@@ -167,7 +166,7 @@ public class carTest {
     }
 
     @Test
-    public void get_enginePower_returns_enginePower(){
+    public void get_enginePower_returns_enginePower() {
         Saab95 saab = new Saab95();
         Volvo240 volvo = new Volvo240();
         assertEquals(125, saab.getEnginePower(), 0);
@@ -175,15 +174,15 @@ public class carTest {
     }
 
     @Test
-    public void get_color_returns_color(){
+    public void get_color_returns_color() {
         Saab95 saab = new Saab95();
         Volvo240 volvo = new Volvo240();
         assertEquals(Color.red, saab.getColor());
         assertEquals(Color.black, volvo.getColor());
     }
 
-    @Test 
-    public void loading_car_in_carTransport_works(){
+    @Test
+    public void loading_car_in_carTransport_works() {
         CarTransport ct = new CarTransport();
         Saab95 saab = new Saab95();
         saab.getPosition().setX(8.2);
@@ -195,20 +194,19 @@ public class carTest {
     }
 
     @Test
-    public void cannot_raise_ramp_while_Scania_is_moving(){
+    public void cannot_raise_ramp_while_Scania_is_moving() {
         Scania scania = new Scania();
         scania.startEngine();
         scania.raisePlatform();
-        assertEquals(0, scania.getPlatform().getCurrentAngle());
+        assertEquals(false, scania.getPlatform().isUp());
     }
 
+    /*
+     * @Test
+     * public void cannot_unload_car_while_platform_isUp(){
+     * CarTransport carTransport = new CarTransport();
+     * carTransport.
+     * }
+     */
 
-/*
-    @Test
-    public void cannot_unload_car_while_platform_isUp(){
-        CarTransport carTransport = new CarTransport();
-        carTransport.
-    }
 }
-
-*/

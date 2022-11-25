@@ -1,38 +1,34 @@
 package src;
+
 import java.awt.*;
 
-public class Scania extends Car {
-    
-    private Ramp platform;
+public class Scania extends Truck {
 
     public Scania() {
-        super(2, Color.green, 200, "Sopis2000");
-        this.platform = new Ramp(70, 10);
+        super(2, Color.green, 200, "Sopis2000", new Ramp(70, 10));
     }
 
-    public void lowerPlatform(){
+    public void lowerPlatform() {
         platform.lowerPlatform();
     }
 
-    public void raisePlatform(){
-        if (currentSpeed == 0){
+    public void raisePlatform() {
+        if (currentSpeed == 0) {
             platform.raisePlatform();
         }
     }
 
     @Override
-    public double speedFactor(){
-        if (platform.getCurrentAngle() == 0){
+    public double speedFactor() {
+        if (!platform.isUp()) {
             return getEnginePower() * 0.01;
+        } else {
+            return 0.0;
         }
-        else {return 0.0;}
     }
 
-    public Ramp getPlatform() {
+    public iPlatform getPlatform() {
         return platform;
     }
 
 }
-
-
-    
