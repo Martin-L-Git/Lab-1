@@ -33,16 +33,14 @@ public class CarTransport extends Truck implements iCanStoreCars {
         double x2 = car.getPosition().getX();
         double y1 = getPosition().getY();
         double y2 = car.getPosition().getY();
-        if (getPosition().calculateDistance(x1, x2, y1, y2) <= reasonableDistance && platform.isUp() == false
-                && loadedCars.size() < maxCapacity) {
+        if (getPosition().calculateDistance(x1, x2, y1, y2) <= reasonableDistance 
+        && platform.isUp() == false && loadedCars.size() < maxCapacity) {
             loadedCars.add(car);
         }
     }
 
     public void unloadCar(Car car) {
-        double x = getPosition().getX();
-        double y = getPosition().getY();
-        if (platform.isUp() == false) {
+        if (platform.isDown()) {
             loadedCars.remove(car);
         }
     }
@@ -53,7 +51,7 @@ public class CarTransport extends Truck implements iCanStoreCars {
 
     @Override
     public double speedFactor() {
-        if (platform.isUp() == true) {
+        if (platform.isUp()) {
             return getEnginePower() * 0.01;
         } else {
             return 0.0;

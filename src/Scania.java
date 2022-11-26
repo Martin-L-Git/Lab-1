@@ -20,7 +20,7 @@ public class Scania extends Truck {
 
     @Override
     public double speedFactor() {
-        if (!platform.isUp()) {
+        if (platform.isDown()) {
             return getEnginePower() * 0.01;
         } else {
             return 0.0;

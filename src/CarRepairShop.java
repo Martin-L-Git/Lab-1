@@ -25,9 +25,18 @@ public class CarRepairShop implements iCanStoreCars {
     }
 
     public void unloadCar(Car car) {
-        double x = position.getX();
-        double y = position.getY();
         repairFloorCars.remove(car);
+    }
 
+    public ArrayList<Car> getRepairFloorCars() {
+        return repairFloorCars;
+    }
+
+    public int getMaxCapacity() {
+        return maxCapacity;
+    }
+
+    public Position getPosition() {
+        return position;
     }
 }
