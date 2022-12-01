@@ -19,7 +19,7 @@ public class CarTransport extends Truck implements iCanStoreCars {
     }
 
     public void lowerPlatform() {
-        if (currentSpeed == 0) {
+        if (getCurrentSpeed() == 0) {
             platform.lowerPlatform();
         }
     }

@@ -13,7 +13,7 @@ public class Scania extends Truck {
     }
 
     public void raisePlatform() {
-        if (currentSpeed == 0) {
+        if (getCurrentSpeed() == 0) {
             platform.raisePlatform();
         }
     }
