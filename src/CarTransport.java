@@ -3,19 +3,17 @@ package src;
 import java.awt.*;
 import java.util.*;
 
-public class CarTransport extends Truck implements iCanStoreCars {
+public class CarTransport extends Truck {
 
-    private ArrayList<Car> loadedCars;
-    private double reasonableDistance = 2;
-    private int maxCapacity = 6;
+    private CarStorage carStorage;
 
-    public CarTransport() {
+    public CarTransport(int maxCapacity) {
         super(2, Color.yellow, 300, "GamlaBettan", new Flatbed());
-        this.loadedCars = new ArrayList<Car>();
+        this.carStorage = new CarStorage(getPosition(), maxCapacity);
     }
 
     public ArrayList<Car> getLoadedCars() {
-        return loadedCars;
+        return carStorage.getLoadedCars();
     }
 
     public void lowerPlatform() {
@@ -29,19 +27,14 @@ public class CarTransport extends Truck implements iCanStoreCars {
     }
 
     public void loadCar(Car car) {
-        double x1 = getPosition().getX();
-        double x2 = car.getPosition().getX();
-        double y1 = getPosition().getY();
-        double y2 = car.getPosition().getY();
-        if (getPosition().calculateDistance(x1, x2, y1, y2) <= reasonableDistance 
-        && platform.isUp() == false && loadedCars.size() < maxCapacity) {
-            loadedCars.add(car);
+        if (platform.isDown()) {
+            carStorage.loadCar(car);
         }
     }
 
     public void unloadCar(Car car) {
         if (platform.isDown()) {
-            loadedCars.remove(car);
+            carStorage.unloadCar(car);
         }
     }
 

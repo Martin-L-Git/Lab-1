@@ -2,41 +2,38 @@ package src;
 
 import java.util.*;
 
-public class CarRepairShop implements iCanStoreCars {
+public class CarRepairShop {
 
-    private ArrayList<Car> repairFloorCars;
-    private double reasonableDistance = 2;
-    private int maxCapacity = 12;
     private Position position;
+    private CarStorage carStorage;
 
-    public CarRepairShop(double x, double y) {
+    public CarRepairShop(double x, double y, int maxCapacity) {
         this.position = new Position(x, y);
-        this.repairFloorCars = new ArrayList<Car>();
+        this.carStorage = new CarStorage(position, maxCapacity);
     }
 
-    public void loadCar(Car other) {
-        double x1 = position.getX();
-        double x2 = other.getPosition().getX();
-        double y1 = position.getY();
-        double y2 = other.getPosition().getY();
-        if (position.calculateDistance(x1, x2, y1, y2) <= reasonableDistance && repairFloorCars.size() < maxCapacity) {
-            repairFloorCars.add(other);
-        }
+    public void loadCar(Car car) {
+        carStorage.loadCar(car);
     }
 
     public void unloadCar(Car car) {
-        repairFloorCars.remove(car);
+        carStorage.unloadCar(car);
     }
 
-    public ArrayList<Car> getRepairFloorCars() {
-        return repairFloorCars;
+    public ArrayList<Car> getLoadedCars() {
+        return carStorage.getLoadedCars();
     }
 
     public int getMaxCapacity() {
-        return maxCapacity;
+        return carStorage.getMaxCapacity();
     }
 
     public Position getPosition() {
         return position;
     }
+
+    public double getReasonableDistance() {
+        return carStorage.getReasonableDistance();
+    }
+
 }

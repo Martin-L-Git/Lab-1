@@ -201,12 +201,19 @@ public class carTest {
         assertEquals(false, scania.getPlatform().isUp());
     }
 
-    /*
-     * @Test
-     * public void cannot_unload_car_while_platform_isUp(){
-     * CarTransport carTransport = new CarTransport();
-     * carTransport.
-     * }
-     */
+
+    @Test
+    public void cars_are_unloaded_close_to_repair_shop(){
+        CarRepairShop carRepairShop = new CarRepairShop(0, 0);
+        Car car = new Volvo240();
+        carRepairShop.loadCar(car);
+        carRepairShop.unloadCar(car);
+        assertEquals(2, car.getPosition().getX(), 0);
+        assertEquals(2, car.getPosition().getY(), 0);
+
+
+
+
+    }
 
 }
