@@ -1,8 +1,60 @@
-Your design probably has a type called something like Car or Vehicle that is a supertype to both Volvo and Scania. What is the contract for gas() and brake() in this type? 
+Questions:
+
+Your design probably has a type called something like Car or Vehicle that is a supertype to both Volvo and Scania. 
+What is the contract for gas() and brake() in this type? 
 Do the implementations of gas() and brake() in both Volvo and Scania follow this contract? 
 Does your design follow the Liskov Substitution Principle?
 How did you handle duplicated code between Scania, the car transporters and the repair shops? 
 Explain how you decided when to use subclassing and when to use composition and delegation.
 Did you need to modify the design from lab 1 in order to make these extensions? 
 If so, how could you have noticed that your design from Lab 1 did not follow the Open-Closed Principle before you started working on Lab 2?
+
+
+Answers:
+
+The contract for gas(amount) is that currentSpeed will be incremented by a speedFactor * amount (0<=amount<=1), which at lowest can be 0
+if the amount of gas is zero or is the speedFactor returns 0 because of a condition that prevents it from increasing, such as having the 
+ramp up on a Scania truck. The incrementation can also be zero if currentSpeed is surpassing enginePower.
+The contract for brake() is the same, but the other way around. It will also return zero if currentSpeed is going below 0.
+
+Both the Scania and the Volvo follow this contract, as the currentSpeed can never be incremented to be higher than enginePower, and it
+cannot return a value lower than 0, even though a return of zero could occur for different reasons, such as having the ramp up or because
+the incrementation would surpass enginePower. Our contract does not have to state why a certain value is returned, only that the 
+returned value is within the expected margin.
+
+Because of this, Liskov Substitution Principle is followed, since the contract is never broken within the subclasses. All of our
+sublasses that use methods from its superclass return the expected behaviour and values. We have not implemented methods in subclasses 
+that break the contract of the superclass. In some cases, we have even gone to the superclass to clarify what the contract is, 
+for example in the speedFactor method which we have specified should return a value >= 0.
+
+Most of the code in the Car class was not really specific to a car, but could work on any vehicle, so we moved the code into a new class
+Vehicle. We also created a class called Truck to differ trucks (Scania, CarTransporter) from cars and let Car and Truck both inherit Vehicle.
+We then decided that the difference between a Car and a Truck should be that a truck has some sort of platform, which can differ between trucks.
+We decided to seperate the different platforms by calling Scanias's platform Ramp and CarTransporter's Flatbed, and created separate classes 
+for these and implemented them using composition. We let both of these classes implement an interface iPlatform so that future potential
+platforms can be used when creating trucks, and so that we need to implement the same methods within them, such as lowering or raising the platform.
+In this way, we avoided duplicated code bewteen Scania and CarTransport.
+
+Both CarTransport and CarRepairShop has the ability to store objects, in order to not have duplicated code we created a class called CarStorage 
+CarStorage handles everything regarding storing cars using load() and unload(). This removes duplicated code between these classes, since all
+functionality for loading, unloading and storing is in CarStorage.
+
+The reason we had the possibility to use subclassing is because the contract of the subtype Truck was the same and even stronger than the
+contract of its supertype Vehicle, thereby we could substitute an object of Truck with an object of Vehicle with unchanged behaviour for 
+the Supertypes programs. In other words, the two classes follows the Liskov Substitution Principle. This Hierchy gives us the possiblity 
+to reuse code and subtype polymorphism without breaking the OCP-principle, which is the main reason we decided to use subclassing. 
+
+Composition was more used when we, inside some class, wanted some functionality from another class without the first class BEING the other.
+For example, CarTransport uses a Flatbed, but it is a Truck. We cannot implement the logic for Flatbed into the Truck class, because not all 
+trucks use a Flatbed. Also, a class can only extend one other, and we wanted functionality from both Truck (and therefore Vehicle) but also Flatbed.
+Same goes for CarStorage. We have classes that use this functionality, but some are already subclasses of other classes.
+
+With the same reasoning as above, we could argue that Scania would be a subclass of Truck. Because of the inherited interface Iplatform 
+in the Truck constructor, every created Scania comes with a Ramp. By this, we used Composition and delegation so 
+that we could delegate to IPlatform from Scania, for example platform.raiseplatform. We used composition and delegation in this
+situation because different trucks have different platforms, so Sub/sup -classing was not an option. 
+
+We had to modify some of the code from lab 1 in order to make the new extensions. We could for example notice that a lot of functions 
+that are found in car are not specific for only cars. By delegating specific elements that are not specific for only cars we could already
+in lab 1 guess that we were going to ripp it apart even more. 
 

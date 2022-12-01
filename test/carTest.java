@@ -183,7 +183,7 @@ public class carTest {
 
     @Test
     public void loading_car_in_carTransport_works() {
-        CarTransport ct = new CarTransport();
+        CarTransport ct = new CarTransport(6);
         Saab95 saab = new Saab95();
         saab.getPosition().setX(8.2);
         ct.getPosition().setX(10);
@@ -201,18 +201,14 @@ public class carTest {
         assertEquals(false, scania.getPlatform().isUp());
     }
 
-
     @Test
-    public void cars_are_unloaded_close_to_repair_shop(){
-        CarRepairShop carRepairShop = new CarRepairShop(0, 0);
+    public void cars_are_unloaded_close_to_repair_shop() {
+        CarRepairShop carRepairShop = new CarRepairShop(0, 0, 12);
         Car car = new Volvo240();
         carRepairShop.loadCar(car);
         carRepairShop.unloadCar(car);
         assertEquals(2, car.getPosition().getX(), 0);
         assertEquals(2, car.getPosition().getY(), 0);
-
-
-
 
     }
 
