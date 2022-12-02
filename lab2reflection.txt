@@ -1,19 +1,7 @@
-Questions:
 
-Your design probably has a type called something like Car or Vehicle that is a supertype to both Volvo and Scania. 
-What is the contract for gas() and brake() in this type? 
-Do the implementations of gas() and brake() in both Volvo and Scania follow this contract? 
-Does your design follow the Liskov Substitution Principle?
-How did you handle duplicated code between Scania, the car transporters and the repair shops? 
-Explain how you decided when to use subclassing and when to use composition and delegation.
-Did you need to modify the design from lab 1 in order to make these extensions? 
-If so, how could you have noticed that your design from Lab 1 did not follow the Open-Closed Principle before you started working on Lab 2?
-
-
-Answers:
 
 The contract for gas(amount) is that currentSpeed will be incremented by a speedFactor * amount (0<=amount<=1), which at lowest can be 0
-if the amount of gas is zero or is the speedFactor returns 0 because of a condition that prevents it from increasing, such as having the 
+if the amount of gas is zero or if the speedFactor returns 0 because of a condition that prevents it from increasing, such as having the 
 ramp up on a Scania truck. The incrementation can also be zero if currentSpeed is surpassing enginePower.
 The contract for brake() is the same, but the other way around. It will also return zero if currentSpeed is going below 0.
 
@@ -32,10 +20,10 @@ Vehicle. We also created a class called Truck to differ trucks (Scania, CarTrans
 We then decided that the difference between a Car and a Truck should be that a truck has some sort of platform, which can differ between trucks.
 We decided to seperate the different platforms by calling Scanias's platform Ramp and CarTransporter's Flatbed, and created separate classes 
 for these and implemented them using composition. We let both of these classes implement an interface iPlatform so that future potential
-platforms can be used when creating trucks, and so that we need to implement the same methods within them, such as lowering or raising the platform.
+platforms can be used when creating trucks, and so we need to implement the same methods within them, such as lowering or raising the platform.
 In this way, we avoided duplicated code bewteen Scania and CarTransport.
 
-Both CarTransport and CarRepairShop has the ability to store objects, in order to not have duplicated code we created a class called CarStorage 
+Both CarTransport and CarRepairShop has the ability to store objects, and in order to not have duplicated code we created a class called CarStorage.
 CarStorage handles everything regarding storing cars using load() and unload(). This removes duplicated code between these classes, since all
 functionality for loading, unloading and storing is in CarStorage.
 
@@ -47,14 +35,17 @@ to reuse code and subtype polymorphism without breaking the OCP-principle, which
 Composition was more used when we, inside some class, wanted some functionality from another class without the first class BEING the other.
 For example, CarTransport uses a Flatbed, but it is a Truck. We cannot implement the logic for Flatbed into the Truck class, because not all 
 trucks use a Flatbed. Also, a class can only extend one other, and we wanted functionality from both Truck (and therefore Vehicle) but also Flatbed.
+Because of the inherited interface iPlatform in the Truck constructor, every created truck comes with a platform. By this, we used Composition and 
+delegation so that we could delegate to the chosen type of platform, for example platform.raiseplatform. We used composition in this
+situation because different trucks have different platforms, so inheritance was not an option. 
 Same goes for CarStorage. We have classes that use this functionality, but some are already subclasses of other classes.
 
-With the same reasoning as above, we could argue that Scania would be a subclass of Truck. Because of the inherited interface Iplatform 
-in the Truck constructor, every created Scania comes with a Ramp. By this, we used Composition and delegation so 
-that we could delegate to IPlatform from Scania, for example platform.raiseplatform. We used composition and delegation in this
-situation because different trucks have different platforms, so Sub/sup -classing was not an option. 
+We had to modify some of the code from lab 1 in order to make the new extensions. For example, like mentioned before, we created a vehicle class
+where we moved most of the code from Car, allowing us to create new types of vehicles, like Truck. Had we used a Vehicle class from the 
+beginning, it would have been much easier from the start to implement new functionality. We have also now added a position class, instead
+of having x and y values inside a Car/Vehicle, that handles all positioning. Had we not done this, we would have to duplicate code, having
+x and y values inside CarRepairShop since it is not a vehicle.
 
-We had to modify some of the code from lab 1 in order to make the new extensions. We could for example notice that a lot of functions 
-that are found in car are not specific for only cars. By delegating specific elements that are not specific for only cars we could already
-in lab 1 guess that we were going to ripp it apart even more. 
+
+
 
