@@ -1,5 +1,4 @@
 
-
 The contract for gas(amount) is that currentSpeed will be incremented by a speedFactor * amount (0<=amount<=1), which at lowest can be 0
 if the amount of gas is zero or if the speedFactor returns 0 because of a condition that prevents it from increasing, such as having the 
 ramp up on a Scania truck. The incrementation can also be zero if currentSpeed is surpassing enginePower.
