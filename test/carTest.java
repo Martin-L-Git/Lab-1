@@ -1,6 +1,5 @@
-package test;
 
-import src.*;
+
 import java.awt.*;
 
 import org.junit.Test;
