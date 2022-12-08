@@ -2,7 +2,7 @@
 
 import java.util.ArrayList;
 
-public class CarStorage implements iCanStoreCars {
+public class CarStorage {
 
     private ArrayList<Car> loadedCars;
     private Position position;
