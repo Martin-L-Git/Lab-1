@@ -9,16 +9,20 @@ import javax.swing.*;
 
 public class DrawPanel extends JPanel{
 
-    // Just a single image, TODO: Generalize
-    BufferedImage volvoImage;
-    // To keep track of a singel cars position
-    Point volvoPoint = new Point();
 
-    // TODO: Make this genereal for all cars
+    // Just a single image, TODO: Generalize
+    BufferedImage VolvoImage;
+    BufferedImage SaabImage;
+    BufferedImage ScaniaImage;
+    // To keep track of a single cars position
+    Point carPoint = new Point();
+
+    // TODO: Make this general for all cars
     void moveit(int x, int y){
-        volvoPoint.x = x;
-        volvoPoint.y = y;
+        carPoint.x = x;
+        carPoint.y = y;
     }
+
 
     // Initializes the panel and reads the images
     public DrawPanel(int x, int y) {
@@ -33,11 +37,19 @@ public class DrawPanel extends JPanel{
 
             // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
             // if you are starting in IntelliJ.
-            volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
+            VolvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Volvo240.jpg"));
+            SaabImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Saab95.jpg"));
+            ScaniaImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/Scania.jpg"));
+
         } catch (IOException ex)
         {
             ex.printStackTrace();
         }
+
+
+    
+          
+
 
     }
 
@@ -46,6 +58,9 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null); // see javadoc for more info on the parameters
+        g.drawImage(VolvoImage, carPoint.x, carPoint.y, null); // see javadoc for more info on the parameters
+        g.drawImage(SaabImage, carPoint.x, (carPoint.y+100), null);
+        g.drawImage(ScaniaImage, carPoint.x, (carPoint.y+200), null);
+        
     }
 }

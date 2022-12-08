@@ -13,7 +13,7 @@ public class Position {
     public Position(double x, double y){
         this.x = x;
         this.y = y;
-        this.direction = Direction.UP;
+        this.direction = Direction.RIGHT;
         this.directions = asList(Direction.UP, Direction.RIGHT, Direction.DOWN, Direction.LEFT);
     }
 
