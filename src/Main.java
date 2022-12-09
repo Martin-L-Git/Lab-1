@@ -21,10 +21,10 @@ public class Main {
         vehicles.add(new Saab95());
         vehicles.add(new Scania());
 
-        CarController cc = new CarController(vehicles);
+        CarController controller = new CarController(vehicles);
 
         // Start a new view and send a reference of self
-        CarView view = new CarView("CarSim 1.0", cc);
+        CarView view = new CarView("CarSim 1.0", controller);
 
         // Start the timer
         timer.start();
@@ -32,7 +32,6 @@ public class Main {
 
     private static class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            
             for (Vehicle vehicle : vehicles) {
                 vehicle.move();
                 int x = (int) Math.round(vehicle.getPosition().getX());
