@@ -1,9 +1,7 @@
 import java.util.ArrayList;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class Main {
 
@@ -43,3 +41,5 @@ public class Main {
         }
     }
 }
+
+// Buttons work, but gas() does not increment the x-value.
