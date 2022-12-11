@@ -42,4 +42,5 @@ public class Main {
     }
 }
 
-// Buttons work, but gas() does not increment the x-value. 
+// We have refactored and the buttons work, but gas() does not increment the x-value for our cars. 
+// We're thinking it may have something to do with out list of vehicles being static? But we are not sure...
