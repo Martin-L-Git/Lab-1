@@ -86,7 +86,7 @@ public class CarController extends JPanel {
         stopButton.setPreferredSize(new Dimension(X / 5 - 15, 200));
         this.add(stopButton);
 
-        gasButton.addActionListener(new ActionListener() {        // Where should this be?
+        gasButton.addActionListener(new ActionListener() {        // Should this be here?
             @Override
             public void actionPerformed(ActionEvent e) {
                 gas(gasAmount);
