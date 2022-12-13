@@ -7,12 +7,16 @@ public class CarStorage {
     private Position position;
     private double reasonableDistance;
     private int maxCapacity;
+    
+    // private Car [] loadedCars2;
 
     public CarStorage(Position position, int maxCapacity) {
         this.loadedCars = new ArrayList<Car>();
         this.position = position;
         this.reasonableDistance = 2;
         this.maxCapacity = maxCapacity;
+
+        // this.loadedCars2 = new Car [maxCapacity];
     }
 
     public void loadCar(Car car) {
@@ -24,6 +28,18 @@ public class CarStorage {
             loadedCars.add(car);
         }
     }
+
+    /*
+
+    public void loadCar2 (Car car) {
+        for (int i = 0; i < loadedCars2.length; i++){
+            if (loadedCars2[i] == null){
+                loadedCars2[i] = car;
+            }
+        }
+    }
+
+    */
 
     public void unloadCar(Car car) {
         loadedCars.remove(car);
