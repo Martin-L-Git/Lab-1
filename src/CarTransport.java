@@ -1,5 +1,3 @@
-
-
 import java.awt.*;
 import java.util.*;
 
@@ -10,10 +8,6 @@ public class CarTransport extends Truck {
     public CarTransport(int maxCapacity) {
         super(2, Color.yellow, 300, "GamlaBettan", new Flatbed());
         this.carStorage = new CarStorage(getPosition(), maxCapacity);
-    }
-
-    public ArrayList<Car> getLoadedCars() {
-        return carStorage.getLoadedCars();
     }
 
     public void lowerPlatform() {
@@ -40,6 +34,10 @@ public class CarTransport extends Truck {
 
     public iPlatform getPlatform() {
         return platform;
+    }
+
+    public int getLoadedCarsSize() {
+        return carStorage.getLoadedCarsSize();
     }
 
     @Override

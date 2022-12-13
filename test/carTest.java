@@ -185,10 +185,10 @@ public class carTest {
         Saab95 saab = new Saab95();
         saab.getPosition().setX(8.2);
         ct.getPosition().setX(10);
-        assertEquals(0, ct.getLoadedCars().size());
+        assertEquals(0, ct.getLoadedCarsSize());
         ct.lowerPlatform();
         ct.loadCar(saab);
-        assertEquals(1, ct.getLoadedCars().size());
+        assertEquals(1, ct.getLoadedCarsSize());
     }
 
     @Test

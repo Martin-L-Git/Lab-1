@@ -19,8 +19,8 @@ public class CarRepairShop {
         carStorage.unloadCar(car);
     }
 
-    public ArrayList<Car> getLoadedCars() {
-        return carStorage.getLoadedCars();
+    public int getLoadedCarsSize() {
+        return carStorage.getLoadedCarsSize();
     }
 
     public int getMaxCapacity() {

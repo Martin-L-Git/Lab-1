@@ -8,6 +8,9 @@ public class CarStorage {
     private double reasonableDistance;
     private int maxCapacity;
     
+    // All commented in this class is another solution for ensuring that we cannot add() more cars than we are allowed to by using a getter of loadedCars.
+    // Ignore for now, we solved the critical issue by simply removing the getter and implementing a new method that only return the current size of the loadedCars.
+
     // private Car [] loadedCars2;
 
     public CarStorage(Position position, int maxCapacity) {
@@ -50,8 +53,8 @@ public class CarStorage {
 
     }
 
-    public ArrayList<Car> getLoadedCars() {
-        return loadedCars;
+    public int getLoadedCarsSize() {
+        return loadedCars.size();
     }
 
     public double getReasonableDistance() {
