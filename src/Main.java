@@ -31,11 +31,11 @@ public class Main {
 
     private static class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Vehicle vehicle : Main.vehicles) {
+            for (Vehicle vehicle : vehicles) {
                 vehicle.move();
                 int x = (int) Math.round(vehicle.getPosition().getX());
                 int y = (int) Math.round(vehicle.getPosition().getY());
-                view.drawPanel.moveit(x, y);
+                view.drawPanel.moveit(vehicle, x, y);
                 // repaint() calls the paintComponent method of the panel
                 view.drawPanel.repaint();
             }

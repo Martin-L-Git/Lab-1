@@ -75,7 +75,6 @@ public abstract class Vehicle implements iMovable {
     }
 
     public void move() {
-        System.out.println("test");
         switch (position.getDirection()) {
             case UP:
                 position.decreaseY(currentSpeed);
