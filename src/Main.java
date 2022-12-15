@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         // Instance of this class
 
-        ArrayList<Vehicle> vehicles = new ArrayList<>();
+        vehicles = new ArrayList<>();
 
         vehicles.add(new Volvo240());
         vehicles.add(new Saab95());
@@ -22,15 +22,16 @@ public class Main {
         CarController controller = new CarController(vehicles);
 
         // Start a new view and send a reference of self
-        CarView view = new CarView("CarSim 1.0", controller);
+        view = new CarView("CarSim 1.0", controller);
 
         // Start the timer
         timer.start();
     }
+    
 
     private static class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Vehicle vehicle : vehicles) {
+            for (Vehicle vehicle : Main.vehicles) {
                 vehicle.move();
                 int x = (int) Math.round(vehicle.getPosition().getX());
                 int y = (int) Math.round(vehicle.getPosition().getY());
@@ -41,6 +42,3 @@ public class Main {
         }
     }
 }
-
-// We have refactored and the buttons work, but gas() does not increment the x-value for our cars. 
-// We're thinking it may have something to do with out list of vehicles being static? But we are not sure...
