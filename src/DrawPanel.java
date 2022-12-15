@@ -19,6 +19,7 @@ public class DrawPanel extends JPanel{
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
+        this.vehicles = vehicles;
 
 
         // Print an error message in case file is not found with a try/catch block
