@@ -16,8 +16,9 @@ public class Main {
 
         PaintableVehicle volvo = new PaintableVehicle(new Volvo240(), "pics/Volvo240.jpg");
         PaintableVehicle saab = new PaintableVehicle(new Saab95(), "pics/Saab95.jpg");
-        saab.getPosition().setY(100);
         PaintableVehicle scania = new PaintableVehicle(new Scania(), "pics/Scania.jpg");
+
+        saab.getPosition().setY(100);
         scania.getPosition().setY(200);
 
         vehicles.add(volvo);
