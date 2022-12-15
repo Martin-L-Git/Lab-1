@@ -24,8 +24,6 @@ public class DrawPanel extends JPanel{
     Point saabPoint = new Point();
     Point scaniaPoint = new Point();
 
-    ArrayList<Point> vehiclePoints = new ArrayList<>();
-
     void moveit(Vehicle v, int x, int y){
         if (v instanceof Saab95){
             saabPoint.x = x;
@@ -48,10 +46,6 @@ public class DrawPanel extends JPanel{
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
-
-        vehiclePoints.add(saabPoint);
-        vehiclePoints.add(volvoPoint);
-        vehiclePoints.add(scaniaPoint);
 
         // Print an error message in case file is not found with a try/catch block
         try {
