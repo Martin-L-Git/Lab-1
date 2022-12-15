@@ -6,7 +6,7 @@ public class CarTransport extends Truck {
     private CarStorage carStorage;
 
     public CarTransport(int maxCapacity) {
-        super(2, Color.yellow, 300, "GamlaBettan", new Flatbed());
+        super(2, Color.yellow, 300, "GamlaBettan", 0, 0, new Flatbed());
         this.carStorage = new CarStorage(getPosition(), maxCapacity);
     }
 

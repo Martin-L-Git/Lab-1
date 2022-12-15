@@ -11,18 +11,23 @@ public class Main {
     private static CarView view;
 
     public static void main(String[] args) {
-        // Instance of this class
 
         vehicles = new ArrayList<>();
 
         PaintableVehicle volvo = new PaintableVehicle(new Volvo240(), "pics/Volvo240.jpg");
         PaintableVehicle saab = new PaintableVehicle(new Saab95(), "pics/Saab95.jpg");
+        saab.getPosition().setY(100);
         PaintableVehicle scania = new PaintableVehicle(new Scania(), "pics/Scania.jpg");
+        scania.getPosition().setY(200);
+
+        vehicles.add(volvo);
+        vehicles.add(saab);
+        vehicles.add(scania);
 
         CarController controller = new CarController(vehicles);
 
         // Start a new view and send a reference of self
-        view = new CarView("CarSim 1.0", controller);
+        view = new CarView("CarSim 1.0", controller, vehicles);
 
         // Start the timer
         timer.start();
@@ -33,10 +38,6 @@ public class Main {
         public void actionPerformed(ActionEvent e) {
             for (PaintableVehicle vehicle : vehicles) {
                 vehicle.move();
-                int x = (int) Math.round(vehicle.getPosition().getX());
-                int y = (int) Math.round(vehicle.getPosition().getY());
-                view.drawPanel.moveit(vehicle, x, y);
-                // repaint() calls the paintComponent method of the panel
                 view.drawPanel.repaint();
             }
         }

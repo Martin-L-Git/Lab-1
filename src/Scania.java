@@ -5,7 +5,7 @@ import java.awt.*;
 public class Scania extends Truck {
 
     public Scania() {
-        super(2, Color.green, 200, "Sopis2000", new Ramp(70, 10));
+        super(2, Color.green, 200, "Sopis2000", 0, 0, new Ramp(70, 10));
     }
 
     public void lowerPlatform() {

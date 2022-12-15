@@ -1,11 +1,26 @@
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+
 public class PaintableVehicle {
     
     Vehicle vehicle;
-    String image;
+    BufferedImage image;
+
 
     public PaintableVehicle(Vehicle vehicle, String image){
         this.vehicle = vehicle;
-        this.image = image;
+       
+        try {
+
+        this.image = ImageIO.read(DrawPanel.class.getResourceAsStream(image));
+
+        } catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }
+
     }
 
     public void gas(double amount){
