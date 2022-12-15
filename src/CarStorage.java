@@ -8,18 +8,11 @@ public class CarStorage {
     private double reasonableDistance;
     private int maxCapacity;
     
-    // All commented in this class is another solution for ensuring that we cannot add() more cars than we are allowed to by using a getter of loadedCars.
-    // Ignore for now, we solved the critical issue by simply removing the getter and implementing a new method that only return the current size of the loadedCars.
-
-    // private Car [] loadedCars2;
-
     public CarStorage(Position position, int maxCapacity) {
         this.loadedCars = new ArrayList<Car>();
         this.position = position;
         this.reasonableDistance = 2;
         this.maxCapacity = maxCapacity;
-
-        // this.loadedCars2 = new Car [maxCapacity];
     }
 
     public void loadCar(Car car) {
@@ -31,18 +24,6 @@ public class CarStorage {
             loadedCars.add(car);
         }
     }
-
-    /*
-
-    public void loadCar2 (Car car) {
-        for (int i = 0; i < loadedCars2.length; i++){
-            if (loadedCars2[i] == null){
-                loadedCars2[i] = car;
-            }
-        }
-    }
-
-    */
 
     public void unloadCar(Car car) {
         loadedCars.remove(car);
