@@ -7,7 +7,7 @@ public class Main {
 
     private final static int delay = 50;
     private static Timer timer = new Timer(delay, new TimerListener());
-    private static ArrayList<Vehicle> vehicles;
+    private static ArrayList<PaintableVehicle> vehicles;
     private static CarView view;
 
     public static void main(String[] args) {
@@ -15,9 +15,7 @@ public class Main {
 
         vehicles = new ArrayList<>();
 
-        vehicles.add(new Volvo240());
-        vehicles.add(new Saab95());
-        vehicles.add(new Scania());
+        PaintableVehicle 
 
         CarController controller = new CarController(vehicles);
 
