@@ -26,7 +26,7 @@ public class CarController extends JPanel {
     // The frame that represents this instance View of the MVC pattern
     
     // A list of cars, modify if needed
-    ArrayList<Vehicle> vehicles;
+    ArrayList<PaintableVehicle> vehicles;
     JPanel controlPanel = new JPanel();
 
     JPanel gasPanel = new JPanel();
@@ -45,7 +45,7 @@ public class CarController extends JPanel {
     JButton stopButton = new JButton("Stop all cars");
 
 
-    public CarController(ArrayList<Vehicle> vehicles) {
+    public CarController(ArrayList<PaintableVehicle> vehicles) {
         this.vehicles = vehicles;
         SpinnerModel spinnerModel = new SpinnerNumberModel(0, // initial value
                 0, // min
@@ -96,7 +96,7 @@ public class CarController extends JPanel {
 
     void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (Vehicle vehicle : vehicles) {
+        for (PaintableVehicle vehicle : vehicles) {
             vehicle.gas(gas);
         }
     } 

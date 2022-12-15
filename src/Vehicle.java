@@ -11,12 +11,12 @@ public abstract class Vehicle implements iMovable {
     private String modelName; // The car model name
     private Position position;
 
-    public Vehicle(int nrDoors, Color color, double enginePower, String modelName) {
+    public Vehicle(int nrDoors, Color color, double enginePower, String modelName, int x, int y) {
         this.nrDoors = nrDoors;
         this.color = color;
         this.enginePower = enginePower;
         this.modelName = modelName;
-        this.position = new Position(0, 0);
+        this.position = new Position(x, y);
         stopEngine();
     }
 
