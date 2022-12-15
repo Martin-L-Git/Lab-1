@@ -12,4 +12,12 @@ public class PaintableVehicle {
         vehicle.gas(amount);
     }
 
+    public void move(){
+        vehicle.move();
+    }
+
+    public Position getPosition(){
+        return vehicle.getPosition();
+    }
+
 }

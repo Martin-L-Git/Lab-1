@@ -15,7 +15,9 @@ public class Main {
 
         vehicles = new ArrayList<>();
 
-        PaintableVehicle 
+        PaintableVehicle volvo = new PaintableVehicle(new Volvo240(), "pics/Volvo240.jpg");
+        PaintableVehicle saab = new PaintableVehicle(new Saab95(), "pics/Saab95.jpg");
+        PaintableVehicle scania = new PaintableVehicle(new Scania(), "pics/Scania.jpg");
 
         CarController controller = new CarController(vehicles);
 
@@ -29,7 +31,7 @@ public class Main {
 
     private static class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Vehicle vehicle : vehicles) {
+            for (PaintableVehicle vehicle : vehicles) {
                 vehicle.move();
                 int x = (int) Math.round(vehicle.getPosition().getX());
                 int y = (int) Math.round(vehicle.getPosition().getY());

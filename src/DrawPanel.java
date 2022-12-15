@@ -26,20 +26,7 @@ public class DrawPanel extends JPanel{
 
     ArrayList<Point> vehiclePoints = new ArrayList<>();
 
-    void moveit(Vehicle v, int x, int y){
-        if (v instanceof Saab95){
-            saabPoint.x = x;
-            saabPoint.y = y;
-        }
-        if (v instanceof Volvo240){
-            volvoPoint.x = x;
-            volvoPoint.y = y;
-        }
-        if (v instanceof Scania){
-            scaniaPoint.x = x;
-            scaniaPoint.y = y;
-        }
-
+    void moveit(PaintableVehicle v, int x, int y){
     }
     
 
